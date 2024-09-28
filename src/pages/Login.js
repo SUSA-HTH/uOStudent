@@ -13,6 +13,10 @@ const Login = () => {
   const goToSignUp = () => {
     navigate('/create-account');
   };
+    
+  const goToDashboard = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <div className="login-page">
@@ -20,7 +24,8 @@ const Login = () => {
       <InputField type="email" placeholder="Email" />
       <InputField type="password" placeholder="Password" />
       <Button label="Log in" onClick={handleLogin} className="login-button" />
-      <p onClick={goToSignUp} className="signup-link">Sign Up</p>
+          <p onClick={goToSignUp} className="signup-link">Sign Up</p>
+          <p onClick={goToDashboard} className="signup">Dashboard</p>
     </div>
   );
 };

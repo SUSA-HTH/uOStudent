@@ -68,3 +68,59 @@ body {
     text-decoration: underline;
   }
   
+
+  /* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+/* Input Field Styles */
+.input-field {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Button Styles */
+.login-button, .create-account-button {
+    background-color: #ccff00;
+    padding: 15px;
+    width: 85%;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+}
+
+/* Page Styles */
+.login-page, .create-account-page, .dashboard-page {
+    margin-top: 50px;
+}
+
+/* Sign-Up Link Styles */
+.signup-link {
+    color: #ccff00;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Dashboard Styles */
+.dashboard-page {
+    margin-top: 50px;
+}
+
+.dashboard-content {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
