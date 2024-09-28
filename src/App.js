@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
+import Calendar from './pages/Calendar';
 import CreateAccount from './pages/CreateAccount';
+import Login from './pages/Login';
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </Router>
   );
