@@ -7,7 +7,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    alert('Logged in successfully!');
+    // Perform any login logic here
+    // If login is successful, navigate to the calendar page
+    navigate('/calendar');
   };
 
   const goToSignUp = () => {
