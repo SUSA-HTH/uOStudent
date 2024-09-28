@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import TaskItem from '../components/TaskItem';
 import { format, addDays, subDays } from 'date-fns'; // For easy date manipulation
+import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
+    const navigate = useNavigate();
   // Define some placeholder tasks for different dates
   const taskData = {
     '2024-09-20': [
@@ -62,12 +64,12 @@ const Calendar = () => {
       </div>
 
       <div className="bottom-nav">
-        <button>🏠</button>
-        <button>📅</button>
-        <button>📖</button>
-        <button>📝</button>
-        <button>👤</button>
-      </div>
+        <button onClick={() => navigate('/')}>🏠</button> {/* Home */}
+        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
+        <button>📖</button> {/* Placeholder for another route */}
+        <button>📝</button> {/* Placeholder for another route */}
+        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
+    </div>
     </div>
   );
 };
