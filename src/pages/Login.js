@@ -27,6 +27,10 @@ const Login = () => {
       alert('Error logging in: ' + error.message);
     }
   };
+    
+  const goToDashboard = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <div className="login-page">
@@ -46,6 +50,9 @@ const Login = () => {
         />
         <Button label="Log in" className="login-button" />
       </form>
+          <p onClick={goToSignUp} className="signup-link">Sign Up</p>
+          <p onClick={goToDashboard} className="signup">Dashboard</p>
+
     </div>
   );
 };
