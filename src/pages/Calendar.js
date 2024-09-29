@@ -1,9 +1,8 @@
-
-import React, { useState } from "react";
 import axios from "axios";
 import TaskItem from "../components/TaskItem";
 import { format, addDays, subDays } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 const Calendar = () => {
   const [courseCode, setCourseCode] = useState("");
@@ -17,109 +16,9 @@ const Calendar = () => {
   const [endtime, setEndTime] = useState("");
   const [coursename, setCourseName] = useState("");
   const navigate = useNavigate();
-
-  const [taskData, setTaskData] = useState(() => {
-    const savedData = localStorage.getItem("taskData");
-
-import React, { useState, useEffect } from 'react';
-import TaskItem from '../components/TaskItem';
-import { format, addDays, subDays } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
-
-const Calendar = () => {
-  const navigate = useNavigate();
-  
-  const [taskData, setTaskData] = useState(() => {
-    const savedData = localStorage.getItem('taskData');
-
-    return savedData ? JSON.parse(savedData) : {};
-  });
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [newDeadline, setNewDeadline] = useState({
-    title: "",
-    courseCode: "",
-    date: "",
-    time: "",
-  });
-
-  const formattedDate = format(selectedDate, "yyyy-MM-dd");
-
-  const [newDeadline, setNewDeadline] = useState({ title: '', courseCode: '', date: '', time: '' });
-
-  const formattedDate = format(selectedDate, 'yyyy-MM-dd');
-
-
-  const handlePreviousDay = () => {
-    setSelectedDate(subDays(selectedDate, 1));
-  };
-
-  const handleNextDay = () => {
-    setSelectedDate(addDays(selectedDate, 1));
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-
-    setNewDeadline({ title: "", courseCode: "", date: "", time: "" });
-
-    setNewDeadline({ title: '', courseCode: '', date: '', time: '' });
-
-  };
-
-  const addDeadline = () => {
-    if (newDeadline.title && newDeadline.courseCode && newDeadline.date) {
-
-      const deadlineDate = format(new Date(newDeadline.date), "yyyy-MM-dd");
-      setTaskData((prevData) => {
-
-      const deadlineDate = format(new Date(newDeadline.date), 'yyyy-MM-dd');
-      setTaskData(prevData => {
-
-        const updatedData = { ...prevData };
-        if (!updatedData[deadlineDate]) {
-          updatedData[deadlineDate] = [];
-        }
-        updatedData[deadlineDate].push({
-          id: Date.now(), // Add a unique id for each deadline
-          title: newDeadline.title,
-          courseCode: newDeadline.courseCode,
-          time: newDeadline.time,
-
-          color: "#ccff00",
-        });
-        localStorage.setItem("taskData", JSON.stringify(updatedData));
-
-          color: '#ccff00',
-        });
-        localStorage.setItem('taskData', JSON.stringify(updatedData));
-
-        return updatedData;
-      });
-      closeModal();
-    }
-  };
-
-  const deleteDeadline = (dateKey, deadlineId) => {
-
-    setTaskData((prevData) => {
-      const updatedData = { ...prevData };
-      updatedData[dateKey] = updatedData[dateKey].filter(
-        (task) => task.id !== deadlineId
-      );
-      if (updatedData[dateKey].length === 0) {
-        delete updatedData[dateKey];
-      }
-      localStorage.setItem("taskData", JSON.stringify(updatedData));
-      return updatedData;
-    });
-  };
   const handleCourseCodeChange = (e) => {
     setCourseCode(e.target.value);
   };
@@ -128,13 +27,10 @@ const Calendar = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/api/course-data",
-        {
+      const response = await axios.post('http://127.0.0.1:5000/api/course-data',{
           courseName: "Introduction to Business",
           courseCode: courseCode,
-        }
-      );
+        });
 
       console.log("Full API Response:", response);
 
@@ -199,18 +95,87 @@ const Calendar = () => {
       setCourseName("No Course Name found");
     }
   };
+  
+  const [newDeadline, setNewDeadline] = useState({
+    title: "",
+    courseCode: "",
+    date: "",
+    time: "",
+  });
 
-    setTaskData(prevData => {
+  const formattedDate = format(selectedDate, "yyyy-MM-dd");
+
+  const [taskData, setTaskData] = useState(() => {
+    const savedData = localStorage.getItem("taskData");
+    return savedData ? JSON.parse(savedData) : {};
+  });
+
+  const handlePreviousDay = () => {
+    setSelectedDate(subDays(selectedDate, 1));
+  };
+
+  const handleNextDay = () => {
+    setSelectedDate(addDays(selectedDate, 1));
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setNewDeadline({ title: "", courseCode: "", date: "", time: "" });
+  };
+
+  const addDeadline = () => {
+    if (newDeadline.title && newDeadline.courseCode && newDeadline.date) {
+      // Create a new date object and set the time to the start of the day
+      const deadlineDate = new Date(newDeadline.date);
+
+      // Set hours, minutes, seconds, and milliseconds to 0 to ensure it is treated as the start of the day
+      deadlineDate.setHours(0, 0, 0, 0);
+
+      // Format the date for storage
+      const formattedDate = format(deadlineDate, "yyyy-MM-dd");
+
+      setTaskData((prevData) => {
+        const updatedData = { ...prevData };
+        if (!updatedData[formattedDate]) {
+          updatedData[formattedDate] = [];
+        }
+        updatedData[formattedDate].push({
+          id: Date.now(), // Add a unique id for each deadline
+          title: newDeadline.title,
+          courseCode: newDeadline.courseCode,
+          time: newDeadline.time,
+          color: "#ccff00",
+        });
+        localStorage.setItem("taskData", JSON.stringify(updatedData));
+        return updatedData;
+      });
+      closeModal();
+    }
+  };
+
+  
+
+  
+
+  
+
+  const deleteDeadline = (dateKey, deadlineId) => {
+    setTaskData((prevData) => {
       const updatedData = { ...prevData };
-      updatedData[dateKey] = updatedData[dateKey].filter(task => task.id !== deadlineId);
+      updatedData[dateKey] = updatedData[dateKey].filter(
+        (task) => task.id !== deadlineId
+      );
       if (updatedData[dateKey].length === 0) {
         delete updatedData[dateKey];
       }
-      localStorage.setItem('taskData', JSON.stringify(updatedData));
+      localStorage.setItem("taskData", JSON.stringify(updatedData));
       return updatedData;
     });
   };
-
 
   return (
     <div className="calendar-page">
@@ -218,7 +183,6 @@ const Calendar = () => {
         <button onClick={handlePreviousDay}>&lt;</button>
         <div className="selected-day">
           {format(selectedDate, "E, MMM d, yyyy")}
-          {format(selectedDate, 'E, MMM d, yyyy')}
         </div>
         <button onClick={handleNextDay}>&gt;</button>
       </div>
@@ -235,7 +199,6 @@ const Calendar = () => {
                 color={task.color}
               />
               <button
-              <button 
                 onClick={() => deleteDeadline(formattedDate, task.id)}
                 className="delete-deadline-button"
               >
@@ -250,7 +213,9 @@ const Calendar = () => {
       <button onClick={openModal} className="add-deadline-button">
         Add Deadline
       </button>
-      <button onClick={openModal} className="add-deadline-button">Add Deadline</button>
+      <button onClick={openModal} className="add-deadline-button">
+        Add Deadline
+      </button>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -262,7 +227,6 @@ const Calendar = () => {
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, title: e.target.value })
               }
-              onChange={(e) => setNewDeadline({ ...newDeadline, title: e.target.value })}
             />
             <input
               type="text"
@@ -271,7 +235,6 @@ const Calendar = () => {
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, courseCode: e.target.value })
               }
-              onChange={(e) => setNewDeadline({ ...newDeadline, courseCode: e.target.value })}
             />
             <input
               type="date"
@@ -279,16 +242,13 @@ const Calendar = () => {
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, date: e.target.value })
               }
-              onChange={(e) => setNewDeadline({ ...newDeadline, date: e.target.value })}
             />
             <input
               type="time"
               value={newDeadline.time}
-
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, time: e.target.value })
               }
-              onChange={(e) => setNewDeadline({ ...newDeadline, time: e.target.value })}
             />
             <button onClick={addDeadline}>Save Deadline</button>
             <button onClick={closeModal}>Cancel</button>
@@ -322,19 +282,12 @@ const Calendar = () => {
           <p>{endtime}</p>
         </div>
       )}
-
       <div className="bottom-nav">
         <button onClick={() => navigate("/dashboard")}>🏠</button>
         <button onClick={() => navigate("/calendar")}>📅</button>
         <button>📖</button>
         <button>📝</button>
         <button onClick={() => navigate("/profile")}>👤</button>
-      <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button>
-        <button onClick={() => navigate('/calendar')}>📅</button>
-        <button>📖</button>
-        <button>📝</button>
-        <button onClick={() => navigate('/profile')}>👤</button>
       </div>
     </div>
   );
