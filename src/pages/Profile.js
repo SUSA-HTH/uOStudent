@@ -62,7 +62,7 @@ const Profile = () => {
   <button className="nav-button" onClick={() => navigate('/course-list')}>
     <FontAwesomeIcon icon={faBook} />
   </button>
-  <button className="nav-button">
+  <button className="nav-button" onClick={() => navigate('/grade-calculator')}>
     <FontAwesomeIcon icon={faEdit} />
   </button>
   <button className="nav-button" onClick={() => navigate('/profile')}>
