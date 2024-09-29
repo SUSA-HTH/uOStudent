@@ -64,7 +64,7 @@ const Calendar = () => {
       </div>
 
       <div className="bottom-nav">
-        <button onClick={() => navigate('/')}>🏠</button> {/* Home */}
+        <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
         <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
         <button>📖</button> {/* Placeholder for another route */}
         <button>📝</button> {/* Placeholder for another route */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';  // Assuming you have a Calendar component
-import '/Users/stutipandya/Desktop/HTH/uOStudent/src/styles/Dashboard.css';  // Import the CSS file
+import '../styles/Dashboard.css';  // Import the CSS file
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
@@ -9,7 +9,8 @@ const Dashboard = () => {
   const [newCourse, setNewCourse] = useState({ name: '', code: '' });
   const [isAddCourseModalOpen, setIsAddCourseModalOpen] = useState(false);
   const [colorIndex, setColorIndex] = useState(0); // State to keep track of color index
-  
+  const [userFullName, setUserFullName] = useState(''); // State to store the logged-in user's full name
+
 // Array of 5 different background colors
 const backgroundColors = ['#079683', '#FF8C00', '#1E90FF', '#32CD32', '#FF69B4'];
 
@@ -20,6 +21,19 @@ const backgroundColors = ['#079683', '#FF8C00', '#1E90FF', '#32CD32', '#FF69B4']
     if (storedCourses) setCourses(JSON.parse(storedCourses));
   }, []);
 
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (loggedInUser) {
+      setUserFullName(loggedInUser.fullname);  // This should set the user's full name
+    }
+  
+    // Load todos and courses from localStorage
+    const storedTodos = localStorage.getItem('todos');
+    const storedCourses = localStorage.getItem('courses');
+    if (storedTodos) setTodos(JSON.parse(storedTodos));
+    if (storedCourses) setCourses(JSON.parse(storedCourses));
+  }, []);
+  
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
     localStorage.setItem('courses', JSON.stringify(courses));
@@ -70,7 +84,7 @@ const backgroundColors = ['#079683', '#FF8C00', '#1E90FF', '#32CD32', '#FF69B4']
     <div className="dashboard">
       <header className="header">
         <div className="profile">
-          <h1>Hello, Jane</h1>
+          <h1>Hello, {userFullName}</h1>
         </div>
       </header>
 
