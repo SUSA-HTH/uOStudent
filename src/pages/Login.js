@@ -62,6 +62,7 @@ const Login = () => {
           <p onClick={goToDashboard} className="signup">Dashboard</p>
           <p onClick={goToCourseList} className="signup">Course List</p>
           <p onClick={goToGradeCalculator} className="signup">Grade Calculator</p>
+          //life goToDashboard
 
     </div>
   );
