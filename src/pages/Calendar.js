@@ -1,61 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskItem from '../components/TaskItem';
-import { format, addDays, subDays } from 'date-fns'; // For easy date manipulation
+import { format, addDays, subDays } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
   const navigate = useNavigate();
-  // Define some placeholder tasks for different dates
-  const [taskData, setTaskData] = useState({
-    '2024-09-20': [
-      { title: 'Assignment1', time: '09:00-12:30', courseCode: 'CourseCode', color: '#d8b4fe' },
-    ],
-    '2024-09-21': [
-      { title: 'Midterm1', time: '14:00-15:00', courseCode: 'CourseCode', color: '#fb7185' },
-      { title: 'To do list item1', time: '15:30-17:30', color: '#d9f99d' },
-    ],
-    '2024-09-22': [
-      { title: 'To do list item2', time: '15:30-17:30', color: '#d9f99d' },
-    ],
+  
+  const [taskData, setTaskData] = useState(() => {
+    const savedData = localStorage.getItem('taskData');
+    return savedData ? JSON.parse(savedData) : {};
   });
 
-  // State to keep track of the currently selected date
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [newTask, setNewTask] = useState({ title: '', courseCode: '', date: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newDeadline, setNewDeadline] = useState({ title: '', courseCode: '', date: '', time: '' });
 
-  // Format the selected date to match the keys in the taskData object
   const formattedDate = format(selectedDate, 'yyyy-MM-dd');
 
-  // Handle previous day navigation
   const handlePreviousDay = () => {
     setSelectedDate(subDays(selectedDate, 1));
   };
 
-  // Handle next day navigation
   const handleNextDay = () => {
     setSelectedDate(addDays(selectedDate, 1));
-  };
-
-  // Function to handle adding a new task
-  const addTask = () => {
-    if (newTask.title && newTask.courseCode && newTask.date) {
-      setTaskData((prevData) => {
-        const updatedData = { ...prevData };
-        const taskDate = format(new Date(newTask.date), 'yyyy-MM-dd'); // Ensure correct date format
-        if (!updatedData[taskDate]) {
-          updatedData[taskDate] = []; // Initialize if it doesn't exist
-        }
-        updatedData[taskDate].push({
-          title: newTask.title,
-          time: '', // You can add a time if needed
-          courseCode: newTask.courseCode,
-          color: '#ffcc00', // Default color
-        });
-        return updatedData;
-      });
-      closeModal();
-    }
   };
 
   const openModal = () => {
@@ -64,7 +31,41 @@ const Calendar = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setNewTask({ title: '', courseCode: '', date: '' }); // Reset all fields
+    setNewDeadline({ title: '', courseCode: '', date: '', time: '' });
+  };
+
+  const addDeadline = () => {
+    if (newDeadline.title && newDeadline.courseCode && newDeadline.date) {
+      const deadlineDate = format(new Date(newDeadline.date), 'yyyy-MM-dd');
+      setTaskData(prevData => {
+        const updatedData = { ...prevData };
+        if (!updatedData[deadlineDate]) {
+          updatedData[deadlineDate] = [];
+        }
+        updatedData[deadlineDate].push({
+          id: Date.now(), // Add a unique id for each deadline
+          title: newDeadline.title,
+          courseCode: newDeadline.courseCode,
+          time: newDeadline.time,
+          color: '#ccff00',
+        });
+        localStorage.setItem('taskData', JSON.stringify(updatedData));
+        return updatedData;
+      });
+      closeModal();
+    }
+  };
+
+  const deleteDeadline = (dateKey, deadlineId) => {
+    setTaskData(prevData => {
+      const updatedData = { ...prevData };
+      updatedData[dateKey] = updatedData[dateKey].filter(task => task.id !== deadlineId);
+      if (updatedData[dateKey].length === 0) {
+        delete updatedData[dateKey];
+      }
+      localStorage.setItem('taskData', JSON.stringify(updatedData));
+      return updatedData;
+    });
   };
 
   return (
@@ -72,69 +73,75 @@ const Calendar = () => {
       <div className="calendar-header">
         <button onClick={handlePreviousDay}>&lt;</button>
         <div className="selected-day">
-          {format(selectedDate, 'E, MMM d, yyyy')}  {/* Format date as 'Day, Month Date, Year' */}
+          {format(selectedDate, 'E, MMM d, yyyy')}
         </div>
         <button onClick={handleNextDay}>&gt;</button>
       </div>
 
       <div className="task-list">
         <h3>Items and tasks</h3>
-        {/* Display tasks for the selected date, if available */}
-        {taskData[formattedDate] ? (
-          taskData[formattedDate].map((task, index) => (
-            <TaskItem
-              key={index}
-              title={task.title}
-              time={task.time}
-              courseCode={task.courseCode}
-              color={task.color}
-            />
+        {taskData[formattedDate] && taskData[formattedDate].length > 0 ? (
+          taskData[formattedDate].map((task) => (
+            <div key={task.id} className="task-item-container">
+              <TaskItem
+                title={task.title}
+                time={task.time}
+                courseCode={task.courseCode}
+                color={task.color}
+              />
+              <button 
+                onClick={() => deleteDeadline(formattedDate, task.id)}
+                className="delete-deadline-button"
+              >
+                Delete
+              </button>
+            </div>
           ))
         ) : (
           <p>No tasks for this day.</p>
         )}
       </div>
 
-      {/* Button to open the modal for adding a task */}
-      <button onClick={openModal}>Add Deadline</button>
+      <button onClick={openModal} className="add-deadline-button">Add Deadline</button>
 
-      {/* Modal for adding a new task */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Add New Task</h2>
+            <h2>Add New Deadline</h2>
             <input
               type="text"
-              placeholder="Task Title"
-              value={newTask.title}
-              onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-              className="modal-input"
+              placeholder="Deadline Title"
+              value={newDeadline.title}
+              onChange={(e) => setNewDeadline({ ...newDeadline, title: e.target.value })}
             />
             <input
               type="text"
               placeholder="Course Code"
-              value={newTask.courseCode}
-              onChange={(e) => setNewTask({ ...newTask, courseCode: e.target.value })}
-              className="modal-input"
+              value={newDeadline.courseCode}
+              onChange={(e) => setNewDeadline({ ...newDeadline, courseCode: e.target.value })}
             />
             <input
               type="date"
-              value={newTask.date}
-              onChange={(e) => setNewTask({ ...newTask, date: e.target.value })}
-              className="modal-input"
+              value={newDeadline.date}
+              onChange={(e) => setNewDeadline({ ...newDeadline, date: e.target.value })}
             />
-            <button onClick={addTask} className="modal-button">Add Task</button>
-            <button onClick={closeModal} className="modal-button">Cancel</button>
+            <input
+              type="time"
+              value={newDeadline.time}
+              onChange={(e) => setNewDeadline({ ...newDeadline, time: e.target.value })}
+            />
+            <button onClick={addDeadline}>Save Deadline</button>
+            <button onClick={closeModal}>Cancel</button>
           </div>
         </div>
       )}
 
       <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
-        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button>📖</button> {/* Placeholder for another route */}
-        <button>📝</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
+        <button onClick={() => navigate('/dashboard')}>🏠</button>
+        <button onClick={() => navigate('/calendar')}>📅</button>
+        <button>📖</button>
+        <button>📝</button>
+        <button onClick={() => navigate('/profile')}>👤</button>
       </div>
     </div>
   );

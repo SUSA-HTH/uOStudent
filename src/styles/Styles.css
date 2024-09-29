@@ -664,3 +664,43 @@ body {
 .selected-day{
   color: #000;
 }
+/* styles.css */
+
+
+.box {
+  background-color: #ffffff; /* White background for boxes */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.grade-title {
+  font-size: 24px; /* Larger title font */
+  font-weight: bold; /* Bold title */
+}
+
+.input {
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Rounded corners for inputs */
+  padding: 10px; /* Padding inside inputs */
+  margin-bottom: 10px; /* Space between inputs */
+}
+
+.button {
+  background-color: #007bff; /* Primary button color */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Button padding */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker on hover */
+}
+
+.result-text {
+  font-size: 18px; /* Font size for result */
+  margin-top: 20px; /* Space above the result */
+}
+

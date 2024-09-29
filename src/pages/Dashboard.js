@@ -154,7 +154,7 @@ const Dashboard = () => {
         <h2>Upcoming Deadlines</h2>
         <div className="deadlines">
           <Calendar />
-          <button onClick={openAddDeadlineModal} className="add-deadline-button">+</button>
+          
           {deadlines.map(deadline => (
             <div key={deadline.id} className="deadline-item">
               <h3>{deadline.course}</h3>
@@ -236,8 +236,8 @@ const Dashboard = () => {
       <div className="bottom-nav">
         <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
         <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button>📖</button> {/* Placeholder for another route */}
-        <button>📝</button> {/* Placeholder for another route */}
+        <button onClick={() => navigate('/grade-calculator')} >📖</button> {/* Placeholder for another route */}
+        <button onClick={() => navigate('/course-list')}>📝</button> {/* Placeholder for another route */}
         <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
     </div>
     </div>

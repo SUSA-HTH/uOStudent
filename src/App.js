@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Calendar from './pages/Calendar';
 import CreateAccount from './pages/CreateAccount';
-
+import Profile from "./pages/Profile";
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CourseList from './pages/CourseList';

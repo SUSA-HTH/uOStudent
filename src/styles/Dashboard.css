@@ -64,6 +64,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
   }
   
   /* Modal */
@@ -84,11 +87,11 @@
     padding: 20px;
     border-radius: 5px;
     max-width: 400px;
-    width: 100%;
+    width: 80%;
   }
   
   .modal-input {
-    width: 100%;
+    width: 90%;
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 3px;
