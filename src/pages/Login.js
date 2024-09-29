@@ -22,7 +22,7 @@ const Login = () => {
       alert(`Welcome, ${user.fullname}!`);
       
       // Redirect to the calendar page (or another page) after successful login
-      navigate('/calendar');
+      navigate('/dashboard');
     } catch (error) {
       alert('Error logging in: ' + error.message);
     }
