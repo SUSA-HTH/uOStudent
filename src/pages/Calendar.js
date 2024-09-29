@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import TaskItem from "../components/TaskItem";
@@ -19,11 +20,24 @@ const Calendar = () => {
 
   const [taskData, setTaskData] = useState(() => {
     const savedData = localStorage.getItem("taskData");
+
+import React, { useState, useEffect } from 'react';
+import TaskItem from '../components/TaskItem';
+import { format, addDays, subDays } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
+
+const Calendar = () => {
+  const navigate = useNavigate();
+  
+  const [taskData, setTaskData] = useState(() => {
+    const savedData = localStorage.getItem('taskData');
+
     return savedData ? JSON.parse(savedData) : {};
   });
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [newDeadline, setNewDeadline] = useState({
     title: "",
     courseCode: "",
@@ -32,6 +46,11 @@ const Calendar = () => {
   });
 
   const formattedDate = format(selectedDate, "yyyy-MM-dd");
+
+  const [newDeadline, setNewDeadline] = useState({ title: '', courseCode: '', date: '', time: '' });
+
+  const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+
 
   const handlePreviousDay = () => {
     setSelectedDate(subDays(selectedDate, 1));
@@ -47,13 +66,22 @@ const Calendar = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+
     setNewDeadline({ title: "", courseCode: "", date: "", time: "" });
+
+    setNewDeadline({ title: '', courseCode: '', date: '', time: '' });
+
   };
 
   const addDeadline = () => {
     if (newDeadline.title && newDeadline.courseCode && newDeadline.date) {
+
       const deadlineDate = format(new Date(newDeadline.date), "yyyy-MM-dd");
       setTaskData((prevData) => {
+
+      const deadlineDate = format(new Date(newDeadline.date), 'yyyy-MM-dd');
+      setTaskData(prevData => {
+
         const updatedData = { ...prevData };
         if (!updatedData[deadlineDate]) {
           updatedData[deadlineDate] = [];
@@ -63,9 +91,15 @@ const Calendar = () => {
           title: newDeadline.title,
           courseCode: newDeadline.courseCode,
           time: newDeadline.time,
+
           color: "#ccff00",
         });
         localStorage.setItem("taskData", JSON.stringify(updatedData));
+
+          color: '#ccff00',
+        });
+        localStorage.setItem('taskData', JSON.stringify(updatedData));
+
         return updatedData;
       });
       closeModal();
@@ -73,6 +107,7 @@ const Calendar = () => {
   };
 
   const deleteDeadline = (dateKey, deadlineId) => {
+
     setTaskData((prevData) => {
       const updatedData = { ...prevData };
       updatedData[dateKey] = updatedData[dateKey].filter(
@@ -165,12 +200,25 @@ const Calendar = () => {
     }
   };
 
+    setTaskData(prevData => {
+      const updatedData = { ...prevData };
+      updatedData[dateKey] = updatedData[dateKey].filter(task => task.id !== deadlineId);
+      if (updatedData[dateKey].length === 0) {
+        delete updatedData[dateKey];
+      }
+      localStorage.setItem('taskData', JSON.stringify(updatedData));
+      return updatedData;
+    });
+  };
+
+
   return (
     <div className="calendar-page">
       <div className="calendar-header">
         <button onClick={handlePreviousDay}>&lt;</button>
         <div className="selected-day">
           {format(selectedDate, "E, MMM d, yyyy")}
+          {format(selectedDate, 'E, MMM d, yyyy')}
         </div>
         <button onClick={handleNextDay}>&gt;</button>
       </div>
@@ -187,6 +235,7 @@ const Calendar = () => {
                 color={task.color}
               />
               <button
+              <button 
                 onClick={() => deleteDeadline(formattedDate, task.id)}
                 className="delete-deadline-button"
               >
@@ -198,11 +247,10 @@ const Calendar = () => {
           <p>No tasks for this day.</p>
         )}
       </div>
-
       <button onClick={openModal} className="add-deadline-button">
         Add Deadline
       </button>
-
+      <button onClick={openModal} className="add-deadline-button">Add Deadline</button>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -214,6 +262,7 @@ const Calendar = () => {
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, title: e.target.value })
               }
+              onChange={(e) => setNewDeadline({ ...newDeadline, title: e.target.value })}
             />
             <input
               type="text"
@@ -222,6 +271,7 @@ const Calendar = () => {
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, courseCode: e.target.value })
               }
+              onChange={(e) => setNewDeadline({ ...newDeadline, courseCode: e.target.value })}
             />
             <input
               type="date"
@@ -229,13 +279,16 @@ const Calendar = () => {
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, date: e.target.value })
               }
+              onChange={(e) => setNewDeadline({ ...newDeadline, date: e.target.value })}
             />
             <input
               type="time"
               value={newDeadline.time}
+
               onChange={(e) =>
                 setNewDeadline({ ...newDeadline, time: e.target.value })
               }
+              onChange={(e) => setNewDeadline({ ...newDeadline, time: e.target.value })}
             />
             <button onClick={addDeadline}>Save Deadline</button>
             <button onClick={closeModal}>Cancel</button>
@@ -276,6 +329,12 @@ const Calendar = () => {
         <button>📖</button>
         <button>📝</button>
         <button onClick={() => navigate("/profile")}>👤</button>
+      <div className="bottom-nav">
+        <button onClick={() => navigate('/dashboard')}>🏠</button>
+        <button onClick={() => navigate('/calendar')}>📅</button>
+        <button>📖</button>
+        <button>📝</button>
+        <button onClick={() => navigate('/profile')}>👤</button>
       </div>
     </div>
   );

@@ -28,6 +28,17 @@ const Login = () => {
     }
   };
     
+  const goToDashboard = () => {
+    navigate('/dashboard');
+  };
+
+  const goToCourseList = () => {
+    navigate('/course-list');
+  };
+
+  const goToGradeCalculator = () => {
+    navigate('/grade-calculator');
+  };
 
   return (
     <div className="login-page">
@@ -47,7 +58,9 @@ const Login = () => {
         />
         <Button label="Log in" className="login-button" />
       </form>
-          <p onClick={goToSignUp} className="signup-link">Sign Up</p>
+        <p onClick={goToSignUp} className="signup-link">Sign Up</p>
+          
+
     </div>
   );
 };
