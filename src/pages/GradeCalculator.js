@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Input, Button, Text, VStack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const GradeCalculator = () => {
   const [currentGrades, setCurrentGrades] = useState([{ score: '', weight: '' }]);
   const [finalWeight, setFinalWeight] = useState('');
   const [desiredGrade, setDesiredGrade] = useState('');
   const [requiredFinalGrade, setRequiredFinalGrade] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedGrades = localStorage.getItem('currentGrades');
+    const storedFinalWeight = localStorage.getItem('finalWeight');
+    const storedDesiredGrade = localStorage.getItem('desiredGrade');
+
+    if (storedGrades) setCurrentGrades(JSON.parse(storedGrades));
+    if (storedFinalWeight) setFinalWeight(storedFinalWeight);
+    if (storedDesiredGrade) setDesiredGrade(storedDesiredGrade);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('currentGrades', JSON.stringify(currentGrades));
+    localStorage.setItem('finalWeight', finalWeight);
+    localStorage.setItem('desiredGrade', desiredGrade);
+  }, [currentGrades, finalWeight, desiredGrade]);
 
   const handleGradeChange = (index, field, value) => {
     const newGrades = [...currentGrades];
@@ -50,14 +68,15 @@ const GradeCalculator = () => {
   };
 
   return (
-    <Box p={4} borderWidth={1} borderRadius="lg" boxShadow="md">
+    <Box className="box" p={4}>
       <VStack spacing={4} align="stretch">
-        <Text fontSize="2xl" fontWeight="bold">Grade Calculator</Text>
+        <Text className="grade-title">Grade Calculator</Text>
 
         {currentGrades.map((grade, index) => (
-          <Box key={index} p={2} borderWidth={1} borderRadius="lg" backgroundColor="#1a1a1a">
+          <Box key={index} className="box" p={2}>
             <Text>Grade {index + 1}</Text>
             <Input
+              className="input"
               placeholder="Score (%)"
               value={grade.score}
               onChange={(e) => handleGradeChange(index, 'score', e.target.value)}
@@ -65,6 +84,7 @@ const GradeCalculator = () => {
               mb={2}
             />
             <Input
+              className="input"
               placeholder="Weight (%)"
               value={grade.weight}
               onChange={(e) => handleGradeChange(index, 'weight', e.target.value)}
@@ -73,9 +93,10 @@ const GradeCalculator = () => {
           </Box>
         ))}
 
-        <Button onClick={addGrade} colorScheme="teal">Add Another Grade</Button>
+        <Button className="button" onClick={addGrade}>Add Another Grade</Button>
 
         <Input
+          className="input"
           placeholder="Final Exam Weight (%)"
           value={finalWeight}
           onChange={(e) => setFinalWeight(e.target.value)}
@@ -83,20 +104,29 @@ const GradeCalculator = () => {
         />
 
         <Input
+          className="input"
           placeholder="Desired Final Grade (0-100)"
           value={desiredGrade}
           onChange={(e) => setDesiredGrade(e.target.value)}
           type="number"
         />
 
-        <Button onClick={calculateRequiredFinalGrade} colorScheme="blue">Calculate Required Final Grade</Button>
+        <Button className="button" onClick={calculateRequiredFinalGrade}>Calculate Required Final Grade</Button>
 
         {requiredFinalGrade !== null && (
-          <Text fontSize="lg" mt={4}>
-            You need to score <strong>{requiredFinalGrade.toFixed(2)}%</strong> on the final exam to achieve a grade of <strong>{desiredGrade}</strong> %.
+          <Text className="result-text">
+            You need to score <strong>{requiredFinalGrade.toFixed(2)}%</strong> on the final exam to achieve a grade of <strong>{desiredGrade}</strong>%.
           </Text>
         )}
       </VStack>
+
+      <div className="bottom-nav">
+        <button onClick={() => navigate('/dashboard')}>🏠</button>
+        <button onClick={() => navigate('/calendar')}>📅</button>
+        <button onClick={() => navigate('/grade-calculator')}>📖</button>
+        <button>📝</button>
+        <button onClick={() => navigate('/profile')}>👤</button>
+      </div>
     </Box>
   );
 };

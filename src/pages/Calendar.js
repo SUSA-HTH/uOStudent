@@ -1,38 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskItem from '../components/TaskItem';
-import { format, addDays, subDays } from 'date-fns'; // For easy date manipulation
+import { format, addDays, subDays } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
-    const navigate = useNavigate();
-  // Define some placeholder tasks for different dates
-  const taskData = {
-    '2024-09-20': [
-      { title: 'Assignment1', time: '09:00-12:30', courseCode: 'CourseCode', color: '#d8b4fe' },
-    ],
-    '2024-09-21': [
-      { title: 'Midterm1', time: '14:00-15:00', courseCode: 'CourseCode', color: '#fb7185' },
-      { title: 'To do list item1', time: '15:30-17:30', color: '#d9f99d' },
-    ],
-    '2024-09-22': [
-      { title: 'To do list item2', time: '15:30-17:30', color: '#d9f99d' },
-    ],
-  };
+  const navigate = useNavigate();
+  
+  const [taskData, setTaskData] = useState(() => {
+    const savedData = localStorage.getItem('taskData');
+    return savedData ? JSON.parse(savedData) : {};
+  });
 
-  // State to keep track of the currently selected date
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newDeadline, setNewDeadline] = useState({ title: '', courseCode: '', date: '', time: '' });
 
-  // Format the selected date to match the keys in the taskData object
   const formattedDate = format(selectedDate, 'yyyy-MM-dd');
 
-  // Handle previous day navigation
   const handlePreviousDay = () => {
     setSelectedDate(subDays(selectedDate, 1));
   };
 
-  // Handle next day navigation
   const handleNextDay = () => {
     setSelectedDate(addDays(selectedDate, 1));
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setNewDeadline({ title: '', courseCode: '', date: '', time: '' });
+  };
+
+  const addDeadline = () => {
+    if (newDeadline.title && newDeadline.courseCode && newDeadline.date) {
+      const deadlineDate = format(new Date(newDeadline.date), 'yyyy-MM-dd');
+      setTaskData(prevData => {
+        const updatedData = { ...prevData };
+        if (!updatedData[deadlineDate]) {
+          updatedData[deadlineDate] = [];
+        }
+        updatedData[deadlineDate].push({
+          id: Date.now(), // Add a unique id for each deadline
+          title: newDeadline.title,
+          courseCode: newDeadline.courseCode,
+          time: newDeadline.time,
+          color: '#ccff00',
+        });
+        localStorage.setItem('taskData', JSON.stringify(updatedData));
+        return updatedData;
+      });
+      closeModal();
+    }
+  };
+
+  const deleteDeadline = (dateKey, deadlineId) => {
+    setTaskData(prevData => {
+      const updatedData = { ...prevData };
+      updatedData[dateKey] = updatedData[dateKey].filter(task => task.id !== deadlineId);
+      if (updatedData[dateKey].length === 0) {
+        delete updatedData[dateKey];
+      }
+      localStorage.setItem('taskData', JSON.stringify(updatedData));
+      return updatedData;
+    });
   };
 
   return (
@@ -40,36 +73,76 @@ const Calendar = () => {
       <div className="calendar-header">
         <button onClick={handlePreviousDay}>&lt;</button>
         <div className="selected-day">
-          {format(selectedDate, 'E, MMM d, yyyy')}  {/* Format date as 'Day, Month Date, Year' */}
+          {format(selectedDate, 'E, MMM d, yyyy')}
         </div>
         <button onClick={handleNextDay}>&gt;</button>
       </div>
 
       <div className="task-list">
         <h3>Items and tasks</h3>
-        {/* Display tasks for the selected date, if available */}
-        {taskData[formattedDate] ? (
-          taskData[formattedDate].map((task, index) => (
-            <TaskItem
-              key={index}
-              title={task.title}
-              time={task.time}
-              courseCode={task.courseCode}
-              color={task.color}
-            />
+        {taskData[formattedDate] && taskData[formattedDate].length > 0 ? (
+          taskData[formattedDate].map((task) => (
+            <div key={task.id} className="task-item-container">
+              <TaskItem
+                title={task.title}
+                time={task.time}
+                courseCode={task.courseCode}
+                color={task.color}
+              />
+              <button 
+                onClick={() => deleteDeadline(formattedDate, task.id)}
+                className="delete-deadline-button"
+              >
+                Delete
+              </button>
+            </div>
           ))
         ) : (
           <p>No tasks for this day.</p>
         )}
       </div>
 
+      <button onClick={openModal} className="add-deadline-button">Add Deadline</button>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Add New Deadline</h2>
+            <input
+              type="text"
+              placeholder="Deadline Title"
+              value={newDeadline.title}
+              onChange={(e) => setNewDeadline({ ...newDeadline, title: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Course Code"
+              value={newDeadline.courseCode}
+              onChange={(e) => setNewDeadline({ ...newDeadline, courseCode: e.target.value })}
+            />
+            <input
+              type="date"
+              value={newDeadline.date}
+              onChange={(e) => setNewDeadline({ ...newDeadline, date: e.target.value })}
+            />
+            <input
+              type="time"
+              value={newDeadline.time}
+              onChange={(e) => setNewDeadline({ ...newDeadline, time: e.target.value })}
+            />
+            <button onClick={addDeadline}>Save Deadline</button>
+            <button onClick={closeModal}>Cancel</button>
+          </div>
+        </div>
+      )}
+
       <div className="bottom-nav">
-        <button onClick={() => navigate('/')}>🏠</button> {/* Home */}
-        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button>📖</button> {/* Placeholder for another route */}
-        <button>📝</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
-    </div>
+        <button onClick={() => navigate('/dashboard')}>🏠</button>
+        <button onClick={() => navigate('/calendar')}>📅</button>
+        <button>📖</button>
+        <button>📝</button>
+        <button onClick={() => navigate('/profile')}>👤</button>
+      </div>
     </div>
   );
 };
