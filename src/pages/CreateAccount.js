@@ -49,6 +49,7 @@ const CreateAccount = () => {
         />
         <Button label="Create an account" className="create-account-button" />
       </form>
+     
     </div>
   );
 };

@@ -19,7 +19,7 @@
  /* Align section headers to the left */
 .course-page h2, .todo-section h2, .deadlines-section h2 {
     margin-bottom: 20px;
-    color: rgb(7, 150, 131);
+    color: #07968c;
     font-family: 'Abel';
     text-align: left; /* Align headers to the left */
 }
@@ -59,7 +59,7 @@
   .courses .add-course-button {
     font-size: 24px;
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #07968c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -107,8 +107,9 @@
   
   /* Todo List Styles */
   .todo-card {
-    background-color: #ffcc99;
+    background-color: #ffff;
     padding: 20px;
+    border-radius: 10px;
   }
   
   .todo-item {
@@ -167,5 +168,8 @@
     margin-top: 20px;
     font-weight: bold;
     color: #555;
+  }
+  .todo-add{
+    padding: 8px;
   }
   
