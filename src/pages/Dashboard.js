@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';  // Assuming you have a Calendar component
 import '../styles/Dashboard.css';  // Import the CSS file
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Dashboard = () => {
@@ -114,18 +117,24 @@ const Dashboard = () => {
       </header>
 
       <section className="course-page">
-        <h2>Courses</h2>
-        <div className="courses">
-          {courses.map(course => (
-            <div key={course.id} className="course-item" style={{ backgroundColor: course.backgroundColor }} >
-              <h3>{course.name}</h3>
-              <p>{course.code}</p>
-              <button onClick={() => deleteCourse(course.id)}>Delete</button>
-            </div>
-          ))}
-          <button onClick={openAddCourseModal} className="add-course-button">+</button>
-        </div>
-      </section>
+  <div className="course-header">
+    <h2>Courses</h2>
+    <button onClick={openAddCourseModal} className="add-course-button">+</button>
+  </div>
+  <div className="courses">
+  {courses.map(course => (
+  <div key={course.id} className="course-item" style={{ backgroundColor: course.backgroundColor }} >
+    <h3>{course.name}</h3>
+    <p>{course.code}</p>
+    <button onClick={() => deleteCourse(course.id)} className="delete-course-button">
+      <FontAwesomeIcon icon={faTrash} />
+    </button>
+  </div>
+))}
+
+  </div>
+</section>
+
 
       {isAddCourseModalOpen && (
         <div className="modal-overlay">
@@ -167,35 +176,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {isAddDeadlineModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Add New Deadline</h2>
-            <input
-              type="text"
-              placeholder="Course"
-              value={newDeadline.course}
-              onChange={(e) => setNewDeadline({ ...newDeadline, course: e.target.value })}
-              className="modal-input"
-            />
-            <input
-              type="date"
-              value={newDeadline.date}
-              onChange={(e) => setNewDeadline({ ...newDeadline, date: e.target.value })}
-              className="modal-input"
-            />
-            <textarea
-              placeholder="Description"
-              value={newDeadline.description}
-              onChange={(e) => setNewDeadline({ ...newDeadline, description: e.target.value })}
-              className="modal-input"
-            />
-            <button onClick={addDeadline} className="modal-button">Add Deadline</button>
-            <button onClick={closeAddDeadlineModal} className="modal-button">Cancel</button>
-          </div>
-        </div>
-      )}
-
+      
       <section className="todo-section">
         <h2>To do</h2>
         <div className="todo">
@@ -234,13 +215,7 @@ const Dashboard = () => {
         </div>
       </section>
       
-      <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
-        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button onClick={() => navigate('/grade-calculator')} >📖</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/course-list')}>📝</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
-    </div>
+      
     </div>
   );
 };
