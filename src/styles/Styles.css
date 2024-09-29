@@ -1,234 +1,27 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #F9DBBD;
-    color: #fff;
-    text-align: center;
-       
-  }
-  
-
-
-  
-  .input-field {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-    border-radius: 5px;
-    border: none;
-  }
-  
-  .create-account-button {
-    background-color: #ccff00;
-    padding: 15px;
-    width: 85%;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #000;
-  }
-  
-  .home-page {
-    margin-top: 50px;
-  }
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-    color: #fff;
-    text-align: center;
-  }
-
-  
-  
-  .login-page, .create-account-page {
-    margin-top: 50px;
-  }
-  
-  .signup-link {
-    color: #a3c02d;
-    margin-top: 20px;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .calendar-page {
-    padding: 20px;
-    text-align: left;
-  }
-  
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .week {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .week button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-  }
-  
-  .days {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
-  }
-  
-  .days span {
-    text-align: center;
-  }
-  
-  .task-list {
-    margin-top: 20px;
-  }
-  
-  .task-item {
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task-details h3 {
-    margin: 0;
-  }
-  
-  .task-courseCode {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: #000;
-  }
-  
-  .bottom-nav button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .calendar-header button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .selected-day {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .task-list {
-    margin-top: 20px;
-  }
-  
-  .task-item {
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .course-item {
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task-details h3 {
-    margin: 0;
-  }
-  
-  .task-courseCode {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: #000;
-  }
-  
-  .bottom-nav button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-
-  /* Global Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #F9DBBD;
+  color: #fff;
+  text-align: center;
+     
 }
 
-/* Container for centering */
-.login-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* This ensures the container takes up the full viewport height */
+
+
+
+.input-field {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
 }
 
-/* Button Styles */
-.login-button, .create-account-button {
+.create-account-button {
   background-color: #ccff00;
   padding: 15px;
   width: 85%;
-  max-width: 300px; /* This prevents the button from becoming too wide on larger screens */
   border: none;
   border-radius: 5px;
   margin-top: 20px;
@@ -237,554 +30,125 @@ body {
   color: #000;
 }
 
-/* Additional styles for input fields if needed */
-
-/* Page Styles */
-.login-page, .create-account-page, .dashboard-page {
-    margin-top: 50px;
+.home-page {
+  margin-top: 50px;
 }
-
-/* Sign-Up Link Styles */
-.signup-link {
-    color: #ccff00;
-    margin-top: 20px;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-/* Dashboard Styles */
-.dashboard-page {
-    margin-top: 50px;
-}
-
-.dashboard-content {
-    padding: 20px;
-    background-color: #1a1a1a;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e6e8ea;
-    color: #100f4d;
-    text-align: center;
-  }
-  
-  .calendar-page {
-    padding: 20px;
-    text-align: left;
-  }
-  
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .week {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .week button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-  }
-  
-  .days {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
-  }
-  
-  .days span {
-    text-align: center;
-  }
-  
-  .task-list {
-    margin-top: 20px;
-  }
-  
-  .task-item {
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task-details h3 {
-    margin: 0;
-  }
-  
-  .task-courseCode {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: #000;
-  }
-  
-  .bottom-nav button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .calendar-header button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .selected-day {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .task-list {
-    margin-top: 20px;
-  }
-  
-  .task-item {
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task-details h3 {
-    margin: 0;
-  }
-  
-  .task-courseCode {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: #000;
-  }
-  
-  .bottom-nav button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  .profile-page {
-    text-align: center;
-    color: white;
-    padding: 20px;
-  }
-  
-  .profile-header {
-    margin-bottom: 20px;
-  }
-  
-  .settings-icon {
-    text-align: right;
-    font-size: 20px;
-  }
-  
-  .profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0 auto;
-    border: 2px solid #ccff00;
-    font-size: 50px;
-  }
-  
-  .profile-tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  
-  .profile-tabs button {
-    background: none;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .profile-tabs button.active {
-    background-color: #ccff00;
-    color: black;
-    border-radius: 15px;
-  }
-  
-  .profile-content {
-    margin-top: 30px;
-  }
-  
-  .chart {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .chart-bar {
-    width: 10%;
-    background-color: #333;
-    position: relative;
-  }
-  
-  .filled {
-    background-color: #ccff00;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
-  
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: #07968c;
-  }
-  
-  .bottom-nav button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .calendar {
-    margin: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .course-data {
-    margin-top: 20px;
-  }
-  
-  .course-info {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .section-info {
-    margin-left: 15px;
-  }
-  
-  .component-info {
-    margin-left: 30px;
-    padding: 5px 0;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .component-info p {
-    margin: 2px 0;
-  }
-  body {
-    background-color: #1a1a1a;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .schedule-builder-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-section {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  
-  label {
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"], select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .add-course-btn {
-    background-color: #28a745;
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .course-section {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .course-term {
-    margin-bottom: 20px;
-  }
-  
-  .course-card {
-    background-color: #2c2c2c;
-    border-radius: 10px;
-    padding: 15px;
-    position: relative;
-  }
-  
-  .course-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .delete-btn {
-    background: none;
-    border: none;
-    color: #dc3545;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .course-details {
-    background-color: #404040;
-    border-radius: 5px;
-    padding: 15px;
-  }
-  
-  .mandatory-optional {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .mandatory-btn, .optional-btn {
-    background-color: #666;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .mandatory-btn {
-    background-color: #007bff;
-  }
-  
-  .optional-btn {
-    background-color: #666;
-  }
-  
-  .course-sections {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  .go-to-schedules-btn {
-    background-color: #007bff;
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-=======
-  /* Profile Page Styling */
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.profile-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  color: #fff;
   text-align: center;
 }
 
-.settings-icon {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
+
+
+.login-page, .create-account-page {
+  margin-top: 50px;
+}
+
+.signup-link {
+  color: #a3c02d;
+  margin-top: 20px;
   cursor: pointer;
+  text-decoration: underline;
 }
 
-.profile-picture {
-  width: 80px;
-  height: 80px;
-  background-color: #f3f4f6;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
 }
 
-.profile-tabs {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 20px;
-}
-
-.profile-tabs button {
-  background-color: #000000;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.profile-tabs button.active {
-  background-color: #07968c;
-  color: white;
-}
-
-.profile-content {
-  width: 100%;
-  max-width: 500px;
-}
-
-.chart {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-.chart-bar {
-  width: 30px;
-  height: 100px;
-  background-color: #e5e7eb;
-  display: flex;
-  align-items: flex-end;
-}
-
-.filled {
-  background-color: #6366f1;
-  width: 100%;
-}
-
-.upcoming-tasks {
-  background-color: #f3f4f6;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-.account-settings {
-  background-color: #282d32;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.account-settings h4 {
-  margin-bottom: 10px;
-}
-
-/* Calendar Page Styling */
 .calendar-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
+  text-align: left;
 }
 
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+.week {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  max-width: 500px;
+}
+
+.week button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+.days {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.days span {
+  text-align: center;
+}
+
+.task-list {
+  margin-top: 20px;
+}
+
+.task-item {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-details h3 {
+  margin: 0;
+}
+
+.task-courseCode {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #000;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
 .calendar-header button {
-  background-color: #07968c;
-  color: white;
+  background: none;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  color: #fff;
+  font-size: 24px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.calendar-header button:hover {
-  background-color: #3730a3;
 }
 
 .selected-day {
@@ -793,76 +157,550 @@ body {
 }
 
 .task-list {
-  width: 100%;
-  max-width: 500px;
-  background-color: #f9fafb;
-  padding: 20px;
+  margin-top: 20px;
+}
+
+.task-item {
   border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.course-item {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-details h3 {
+  margin: 0;
+}
+
+.task-courseCode {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #000;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+/* Container for centering */
+.login-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh; /* This ensures the container takes up the full viewport height */
+}
+
+/* Button Styles */
+.login-button, .create-account-button {
+background-color: #ccff00;
+padding: 15px;
+width: 85%;
+max-width: 300px; /* This prevents the button from becoming too wide on larger screens */
+border: none;
+border-radius: 5px;
+margin-top: 20px;
+cursor: pointer;
+font-size: 16px;
+color: #000;
+}
+
+/* Additional styles for input fields if needed */
+
+/* Page Styles */
+.login-page, .create-account-page, .dashboard-page {
+  margin-top: 50px;
+}
+
+/* Sign-Up Link Styles */
+.signup-link {
+  color: #ccff00;
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Dashboard Styles */
+.dashboard-page {
+  margin-top: 50px;
+}
+
+.dashboard-content {
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e6e8ea;
+  color: #100f4d;
+  text-align: center;
+}
+
+.calendar-page {
+  padding: 20px;
+  text-align: left;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
+.week {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.week button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+.days {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.days span {
+  text-align: center;
+}
+
+.task-list {
+  margin-top: 20px;
+}
+
+.task-item {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-details h3 {
+  margin: 0;
+}
+
+.task-courseCode {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #000;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.selected-day {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.task-list {
+  margin-top: 20px;
+}
+
+.task-item {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-details h3 {
+  margin: 0;
+}
+
+.task-courseCode {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #000;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.profile-page {
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.settings-icon {
+  text-align: right;
+  font-size: 20px;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 2px solid #ccff00;
+  font-size: 50px;
+}
+
+.profile-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.profile-tabs button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.profile-tabs button.active {
+  background-color: #ccff00;
+  color: black;
+  border-radius: 15px;
+}
+
+.profile-content {
+  margin-top: 30px;
+}
+
+.chart {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.chart-bar {
+  width: 10%;
+  background-color: #333;
+  position: relative;
+}
+
+.filled {
+  background-color: #ccff00;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 10px;
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #07968c;
+  border-radius: 30px;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Profile Page Styling */
+.profile-page {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+font-family: Arial, sans-serif;
+}
+
+.profile-header {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
+text-align: center;
+}
+
+.settings-icon {
+position: absolute;
+top: 10px;
+right: 20px;
+font-size: 24px;
+cursor: pointer;
+}
+
+.profile-picture {
+width: 80px;
+height: 80px;
+background-color: #f3f4f6;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.profile-tabs {
+display: flex;
+justify-content: space-around;
+width: 100%;
+max-width: 500px;
+margin-bottom: 20px;
+}
+
+.profile-tabs button {
+background-color: #000000;
+border: none;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+border-radius: 10px;
+transition: background-color 0.3s ease;
+}
+
+.profile-tabs button.active {
+background-color: #07968c;
+color: white;
+}
+
+.profile-content {
+width: 100%;
+max-width: 500px;
+}
+
+.chart {
+display: flex;
+justify-content: space-between;
+margin: 20px 0;
+}
+
+.chart-bar {
+width: 30px;
+height: 100px;
+background-color: #e5e7eb;
+display: flex;
+align-items: flex-end;
+}
+
+.filled {
+background-color: #6366f1;
+width: 100%;
+}
+
+.upcoming-tasks {
+background-color: #f3f4f6;
+padding: 10px;
+border-radius: 10px;
+margin-top: 10px;
+}
+
+.account-settings {
+background-color: #282d32;
+padding: 20px;
+border-radius: 10px;
+}
+
+.account-settings h4 {
+margin-bottom: 10px;
+}
+
+/* Calendar Page Styling */
+.calendar-page {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+}
+
+.calendar-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+max-width: 500px;
+margin-bottom: 20px;
+}
+
+.calendar-header button {
+background-color: #07968c;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.calendar-header button:hover {
+background-color: #3730a3;
+}
+
+.selected-day {
+font-size: 18px;
+font-weight: bold;
+}
+
+.task-list {
+width: 100%;
+max-width: 500px;
+background-color: #f9fafb;
+padding: 20px;
+border-radius: 10px;
+margin-bottom: 20px;
+}
+
 .task-list h3 {
-  margin-bottom: 10px;
+margin-bottom: 10px;
 }
 
 .task-list p {
-  color: #6b7280;
+color: #6b7280;
 }
 
 
 
 .bottom-nav button {
-  background-color: #07968c;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #07968c;
+background-color: #07968c;
+border: none;
+font-size: 24px;
+cursor: pointer;
+color: #fff;
 }
 
 .bottom-nav button:hover {
-  color: #6366f1;
+color: #6366f1;
 }
 .selected-day{
-  color: #000;
+color: #000;
 }
 /* styles.css */
 
 
 .box {
-  background-color: #ffffff; /* White background for boxes */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+background-color: #ffffff; /* White background for boxes */
+border-radius: 8px; /* Rounded corners */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .grade-title {
-  font-size: 24px; /* Larger title font */
-  font-weight: bold; /* Bold title */
+font-size: 24px; /* Larger title font */
+font-weight: bold; /* Bold title */
 }
 
 .input {
-  border: 1px solid #ccc; /* Light border */
-  border-radius: 4px; /* Rounded corners for inputs */
-  padding: 10px; /* Padding inside inputs */
-  margin-bottom: 10px; /* Space between inputs */
+border: 1px solid #ccc; /* Light border */
+border-radius: 4px; /* Rounded corners for inputs */
+padding: 10px; /* Padding inside inputs */
+margin-bottom: 10px; /* Space between inputs */
 }
 
 .button {
-  background-color: #007bff; /* Primary button color */
-  color: white; /* Text color */
-  padding: 10px 20px; /* Button padding */
-  border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth transition */
+background-color: #007bff; /* Primary button color */
+color: white; /* Text color */
+padding: 10px 20px; /* Button padding */
+border: none; /* No border */
+border-radius: 4px; /* Rounded corners */
+cursor: pointer; /* Pointer cursor on hover */
+transition: background-color 0.3s; /* Smooth transition */
 }
 
 .button:hover {
-  background-color: #0056b3; /* Darker on hover */
+background-color: #0056b3; /* Darker on hover */
 }
 
 .result-text {
-  font-size: 18px; /* Font size for result */
-  margin-top: 20px; /* Space above the result */
+font-size: 18px; /* Font size for result */
+margin-top: 20px; /* Space above the result */
 }
-
-
