@@ -17,12 +17,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Attempt to log in the user with email and password
+      
       const user = await loginUser(email, password);
       alert(`Welcome, ${user.fullname}!`);
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
       
       // Redirect to the calendar page (or another page) after successful login
-      navigate('/dashboard');
+      navigate('/calendar');
     } catch (error) {
       alert('Error logging in: ' + error.message);
     }
