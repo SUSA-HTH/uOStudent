@@ -3,6 +3,7 @@ import Calendar from './Calendar';  // Assuming you have a Calendar component
 import '../styles/Dashboard.css';  // Import the CSS file
 import { useNavigate } from 'react-router-dom';
 
+
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
