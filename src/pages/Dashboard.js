@@ -64,6 +64,10 @@ const Dashboard = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const viewCourse = (courseId) => {
+    navigate(`/courseview/${courseId}`);  
+  };
+
   const openAddCourseModal = () => {
     setIsAddCourseModalOpen(true);
   };

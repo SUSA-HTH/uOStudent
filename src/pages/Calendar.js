@@ -302,12 +302,22 @@ const Calendar = () => {
         </div>
       )}
       <div className="bottom-nav">
-        <button onClick={() => navigate("/dashboard")}>🏠</button>
-        <button onClick={() => navigate("/calendar")}>📅</button>
-        <button>📖</button>
-        <button>📝</button>
-        <button onClick={() => navigate("/profile")}>👤</button>
-      </div>
+  <button className="nav-button" onClick={() => navigate('/dashboard')}>
+    <FontAwesomeIcon icon={faHome} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/calendar')}>
+    <FontAwesomeIcon icon={faCalendar} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/course-list')}>
+    <FontAwesomeIcon icon={faBook} />
+  </button>
+  <button className="nav-button"onClick={() => navigate('/grade-calculator')}>
+    <FontAwesomeIcon icon={faEdit} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/profile')}>
+    <FontAwesomeIcon icon={faUser} />
+  </button>
+</div>
     </div>
   );
 };

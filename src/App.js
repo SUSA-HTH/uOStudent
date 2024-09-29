@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CourseList from './pages/CourseList';
 import GradeCalculator from './pages/GradeCalculator';
+import CourseView from './pages/CourseView';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/course-list" element={<CourseList />} />
         <Route path="/grade-calculator" element={<GradeCalculator />} />
+        <Route path="/courseview/:courseId" element={<CourseView />} />
       </Routes>
     </Router>
   );
