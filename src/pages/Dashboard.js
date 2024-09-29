@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';  // Assuming you have a Calendar component
-import '/Users/stutipandya/Desktop/HTH/uOStudent/src/styles/Dashboard.css';  // Import the CSS file
+import '../styles/Dashboard.css';  // Import the CSS file
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
