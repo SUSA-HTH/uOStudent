@@ -24,7 +24,8 @@ const CourseList = () => {
             <p>⭐ {course.rating} | {course.hours} Hours | {course.people} People</p>
           </div>
         ))}
-      </div>
+          </div>
+          
     </div>
   );
 };

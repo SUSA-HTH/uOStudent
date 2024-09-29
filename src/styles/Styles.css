@@ -479,12 +479,13 @@ body {
   .bottom-nav {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 10px;
+    width: 95%;
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
     background-color: #07968c;
+    border-radius: 30px;
   }
   
   .bottom-nav button {
@@ -655,7 +656,7 @@ body {
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #07968c;
+  color: #fff;
 }
 
 .bottom-nav button:hover {

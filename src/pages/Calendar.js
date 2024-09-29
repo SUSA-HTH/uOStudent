@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TaskItem from '../components/TaskItem';
 import { format, addDays, subDays } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import HomeIcon from '../icons/home.png'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faCalendar, faBook, faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Calendar = () => {
   const navigate = useNavigate();
@@ -36,13 +39,21 @@ const Calendar = () => {
 
   const addDeadline = () => {
     if (newDeadline.title && newDeadline.courseCode && newDeadline.date) {
-      const deadlineDate = format(new Date(newDeadline.date), 'yyyy-MM-dd');
+      // Create a new date object and set the time to the start of the day
+      const deadlineDate = new Date(newDeadline.date);
+      
+      // Set hours, minutes, seconds, and milliseconds to 0 to ensure it is treated as the start of the day
+      deadlineDate.setHours(0, 0, 0, 0);
+      
+      // Format the date for storage
+      const formattedDate = format(deadlineDate, 'yyyy-MM-dd');
+      
       setTaskData(prevData => {
         const updatedData = { ...prevData };
-        if (!updatedData[deadlineDate]) {
-          updatedData[deadlineDate] = [];
+        if (!updatedData[formattedDate]) {
+          updatedData[formattedDate] = [];
         }
-        updatedData[deadlineDate].push({
+        updatedData[formattedDate].push({
           id: Date.now(), // Add a unique id for each deadline
           title: newDeadline.title,
           courseCode: newDeadline.courseCode,
@@ -55,6 +66,7 @@ const Calendar = () => {
       closeModal();
     }
   };
+  
 
   const deleteDeadline = (dateKey, deadlineId) => {
     setTaskData(prevData => {
@@ -136,13 +148,24 @@ const Calendar = () => {
         </div>
       )}
 
-      <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button>
-        <button onClick={() => navigate('/calendar')}>📅</button>
-        <button>📖</button>
-        <button>📝</button>
-        <button onClick={() => navigate('/profile')}>👤</button>
-      </div>
+<div className="bottom-nav">
+  <button className="nav-button" onClick={() => navigate('/dashboard')}>
+    <FontAwesomeIcon icon={faHome} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/calendar')}>
+    <FontAwesomeIcon icon={faCalendar} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/course-list')}>
+    <FontAwesomeIcon icon={faBook} />
+  </button>
+  <button className="nav-button">
+    <FontAwesomeIcon icon={faEdit} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/profile')}>
+    <FontAwesomeIcon icon={faUser} />
+  </button>
+</div>
+
     </div>
   );
 };

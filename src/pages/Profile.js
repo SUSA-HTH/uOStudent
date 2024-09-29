@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Calendar from './Calendar'; // Import your Calendar component
-import { FaHome, FaCalendarAlt, FaBook, FaPen, FaUser } from 'react-icons/fa'; // Font Awesome Icons
+import { FaHome, FaCalendarAlt, FaBook, FaPen, FaUser } from 'react-icons/fa'; // Font Awesome Icons\
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faCalendar, faBook, faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 const Profile = () => {
@@ -51,12 +53,22 @@ const Profile = () => {
       </div>
 
       <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
-        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button>📖</button> {/* Placeholder for another route */}
-        <button>📝</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
-    </div>
+  <button className="nav-button" onClick={() => navigate('/dashboard')}>
+    <FontAwesomeIcon icon={faHome} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/calendar')}>
+    <FontAwesomeIcon icon={faCalendar} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/course-list')}>
+    <FontAwesomeIcon icon={faBook} />
+  </button>
+  <button className="nav-button">
+    <FontAwesomeIcon icon={faEdit} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/profile')}>
+    <FontAwesomeIcon icon={faUser} />
+  </button>
+</div>
       </div>
 
   );

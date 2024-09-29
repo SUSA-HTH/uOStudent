@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';  // Assuming you have a Calendar component
 import '../styles/Dashboard.css';  // Import the CSS file
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
@@ -113,18 +116,24 @@ const Dashboard = () => {
       </header>
 
       <section className="course-page">
-        <h2>Courses</h2>
-        <div className="courses">
-          {courses.map(course => (
-            <div key={course.id} className="course-item" style={{ backgroundColor: course.backgroundColor }} >
-              <h3>{course.name}</h3>
-              <p>{course.code}</p>
-              <button onClick={() => deleteCourse(course.id)}>Delete</button>
-            </div>
-          ))}
-          <button onClick={openAddCourseModal} className="add-course-button">+</button>
-        </div>
-      </section>
+  <div className="course-header">
+    <h2>Courses</h2>
+    <button onClick={openAddCourseModal} className="add-course-button">+</button>
+  </div>
+  <div className="courses">
+  {courses.map(course => (
+  <div key={course.id} className="course-item" style={{ backgroundColor: course.backgroundColor }} >
+    <h3>{course.name}</h3>
+    <p>{course.code}</p>
+    <button onClick={() => deleteCourse(course.id)} className="delete-course-button">
+      <FontAwesomeIcon icon={faTrash} />
+    </button>
+  </div>
+))}
+
+  </div>
+</section>
+
 
       {isAddCourseModalOpen && (
         <div className="modal-overlay">
@@ -233,13 +242,7 @@ const Dashboard = () => {
         </div>
       </section>
       
-      <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
-        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button onClick={() => navigate('/grade-calculator')} >📖</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/course-list')}>📝</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
-    </div>
+      
     </div>
   );
 };
