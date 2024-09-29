@@ -33,12 +33,12 @@ body {
 .home-page {
   margin-top: 50px;
 }
-<<<<<<< HEAD
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #ffffff;
   color: #fff;
-=======
+}
 
 /* Sign-Up Link Styles */
 .signup-link {
@@ -467,7 +467,6 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
->>>>>>> e2485da0445d2bd8218323bb43fbd3563da78181
   text-align: center;
 }
 
@@ -1083,19 +1082,12 @@ color: #6b7280;
 
 
 .bottom-nav button {
-<<<<<<< HEAD
 background-color: #07968c;
 border: none;
 font-size: 24px;
 cursor: pointer;
 color: #fff;
-=======
-  background-color: #07968c;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
->>>>>>> e2485da0445d2bd8218323bb43fbd3563da78181
+
 }
 
 .bottom-nav button:hover {
