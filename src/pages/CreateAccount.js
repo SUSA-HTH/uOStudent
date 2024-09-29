@@ -19,7 +19,7 @@ const CreateAccount = () => {
       alert('Account created successfully!');
 
       // Redirect to login page or calendar page after successful account creation
-      navigate('/login'); // Or you could navigate to another page like the calendar page
+      navigate('/'); // Or you could navigate to another page like the calendar page
     } catch (error) {
       alert('Error creating account: ' + error.message);
     }
