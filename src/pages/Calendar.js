@@ -1,8 +1,16 @@
+
+import React, { useState, useEffect } from 'react';
+import TaskItem from '../components/TaskItem';
+import { format, addDays, subDays } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
+import HomeIcon from '../icons/home.png'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faCalendar, faBook, faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
+
 import axios from "axios";
-import TaskItem from "../components/TaskItem";
-import { format, addDays, subDays } from "date-fns";
-import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+
+
+
 
 const Calendar = () => {
   const [courseCode, setCourseCode] = useState("");
@@ -132,13 +140,15 @@ const Calendar = () => {
       // Create a new date object and set the time to the start of the day
       const deadlineDate = new Date(newDeadline.date);
 
+      
       // Set hours, minutes, seconds, and milliseconds to 0 to ensure it is treated as the start of the day
       deadlineDate.setHours(0, 0, 0, 0);
-
+      
       // Format the date for storage
-      const formattedDate = format(deadlineDate, "yyyy-MM-dd");
+      const formattedDate = format(deadlineDate, 'yyyy-MM-dd');
+      
+      setTaskData(prevData => {
 
-      setTaskData((prevData) => {
         const updatedData = { ...prevData };
         if (!updatedData[formattedDate]) {
           updatedData[formattedDate] = [];
@@ -156,6 +166,7 @@ const Calendar = () => {
       closeModal();
     }
   };
+  
 
   
 
@@ -187,8 +198,13 @@ const Calendar = () => {
         <button onClick={handleNextDay}>&gt;</button>
       </div>
 
-      <div className="task-list">
-        <h3>Items and tasks</h3>
+          <div className="task-list">
+          <div className="course-header">
+    
+
+              <h3>Assignments</h3>
+                  <button onClick={openModal} className="add-course-button">+</button>
+                  </div>
         {taskData[formattedDate] && taskData[formattedDate].length > 0 ? (
           taskData[formattedDate].map((task) => (
             <div key={task.id} className="task-item-container">
@@ -210,6 +226,7 @@ const Calendar = () => {
           <p>No tasks for this day.</p>
         )}
       </div>
+
       <button onClick={openModal} className="add-deadline-button">
         Add Deadline
       </button>
@@ -264,6 +281,8 @@ const Calendar = () => {
       />
       <button onClick={fetchData}>Fetch Course Data</button>
 
+
+
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && (
@@ -283,12 +302,12 @@ const Calendar = () => {
         </div>
       )}
       <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button> {/* Home */}
-        <button onClick={() => navigate('/calendar')}>📅</button> {/* Calendar */}
-        <button onClick={() => navigate('/course-list')}>📖 </button> {/* Course List */}
-        <button>📝</button> {/* Placeholder for another route */}
-        <button onClick={() => navigate('/profile')}>👤</button> {/* Profile */}
-    </div>
+        <button onClick={() => navigate("/dashboard")}>🏠</button>
+        <button onClick={() => navigate("/calendar")}>📅</button>
+        <button>📖</button>
+        <button>📝</button>
+        <button onClick={() => navigate("/profile")}>👤</button>
+      </div>
     </div>
   );
 };
