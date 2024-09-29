@@ -1,31 +1,53 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import HomeIcon from '../icons/home.png'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faCalendar, faBook, faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const CourseList = () => {
+    const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    const storedCourses = [
-      { id: 1, title: 'React for Beginners', courseCode: 'REACT101', rating: 4.8, hours: 120, people: '5k' },
-      { id: 2, title: 'Advanced JavaScript', courseCode: 'JS201', rating: 4.5, hours: 90, people: '3k' },
-      { id: 3, title: 'Web Design Basics', courseCode: 'WD101', rating: 4.7, hours: 100, people: '8k' }
-    ];
-
-    setCourses(storedCourses);
+    const storedCourses = localStorage.getItem('courses');
+    if (storedCourses) {
+      setCourses(JSON.parse(storedCourses));
+    }
   }, []);
 
   return (
     <div className="course-list">
-      <h2>Your Courses</h2>
-      <div className="courses">
-        {courses.map(course => (
-          <div className="course-item" key={course.id}>
-            <h3>{course.title}</h3>
-            <p>{course.courseCode}</p>
-            <p>⭐ {course.rating} | {course.hours} Hours | {course.people} People</p>
+      <h1>Your Courses</h1>
+      <div className="course-container">
+        {courses.length > 0 ? (
+          courses.map(course => (
+            <div key={course.id} className="course-item" style={{ backgroundColor: course.backgroundColor }}>
+              <h3>{course.name}</h3>
+              <p>{course.code}</p>
+            </div>
+          ))
+        ) : (
+          <p>No courses added yet.</p>
+        )}
           </div>
-        ))}
-          </div>
-          
+          <div className="bottom-nav">
+  <button className="nav-button" onClick={() => navigate('/dashboard')}>
+    <FontAwesomeIcon icon={faHome} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/calendar')}>
+    <FontAwesomeIcon icon={faCalendar} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/course-list')}>
+    <FontAwesomeIcon icon={faBook} />
+  </button>
+  <button className="nav-button">
+    <FontAwesomeIcon icon={faEdit} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/profile')}>
+    <FontAwesomeIcon icon={faUser} />
+  </button>
+</div>
+
     </div>
   );
 };

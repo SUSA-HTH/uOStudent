@@ -176,35 +176,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {isAddDeadlineModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Add New Deadline</h2>
-            <input
-              type="text"
-              placeholder="Course"
-              value={newDeadline.course}
-              onChange={(e) => setNewDeadline({ ...newDeadline, course: e.target.value })}
-              className="modal-input"
-            />
-            <input
-              type="date"
-              value={newDeadline.date}
-              onChange={(e) => setNewDeadline({ ...newDeadline, date: e.target.value })}
-              className="modal-input"
-            />
-            <textarea
-              placeholder="Description"
-              value={newDeadline.description}
-              onChange={(e) => setNewDeadline({ ...newDeadline, description: e.target.value })}
-              className="modal-input"
-            />
-            <button onClick={addDeadline} className="modal-button">Add Deadline</button>
-            <button onClick={closeAddDeadlineModal} className="modal-button">Cancel</button>
-          </div>
-        </div>
-      )}
-
+      
       <section className="todo-section">
         <h2>To do</h2>
         <div className="todo">

@@ -90,8 +90,13 @@ const Calendar = () => {
         <button onClick={handleNextDay}>&gt;</button>
       </div>
 
-      <div className="task-list">
-        <h3>Items and tasks</h3>
+          <div className="task-list">
+          <div className="course-header">
+    
+
+              <h3>Assignments</h3>
+                  <button onClick={openModal} className="add-course-button">+</button>
+                  </div>
         {taskData[formattedDate] && taskData[formattedDate].length > 0 ? (
           taskData[formattedDate].map((task) => (
             <div key={task.id} className="task-item-container">
@@ -114,7 +119,7 @@ const Calendar = () => {
         )}
       </div>
 
-      <button onClick={openModal} className="add-deadline-button">Add Deadline</button>
+      
 
       {isModalOpen && (
         <div className="modal-overlay">
