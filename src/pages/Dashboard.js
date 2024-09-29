@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from './Calendar';  // Import the Calendar component
-import { Box, VStack, HStack, Input, Button, Text, Checkbox, IconButton } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import Calendar from './Calendar';  // Assuming you have a Calendar component
+import '/Users/stutipandya/Desktop/HTH/uOStudent/src/styles/Dashboard.css';  // Import the CSS file
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
+  const [courses, setCourses] = useState([]);
+  const [newCourse, setNewCourse] = useState({ name: '', code: '' });
+  const [isAddCourseModalOpen, setIsAddCourseModalOpen] = useState(false);
+  const [colorIndex, setColorIndex] = useState(0); // State to keep track of color index
+  
+// Array of 5 different background colors
+const backgroundColors = ['#079683', '#FF8C00', '#1E90FF', '#32CD32', '#FF69B4'];
 
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
-      setTodos(JSON.parse(storedTodos));
-    }
+    const storedCourses = localStorage.getItem('courses');
+    if (storedTodos) setTodos(JSON.parse(storedTodos));
+    if (storedCourses) setCourses(JSON.parse(storedCourses));
   }, []);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem('courses', JSON.stringify(courses));
+  }, [todos, courses]);
 
   const addTodo = () => {
     if (newTodo.trim() !== '') {
@@ -35,11 +42,34 @@ const Dashboard = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const openAddCourseModal = () => {
+    setIsAddCourseModalOpen(true);
+  };
+
+  const closeAddCourseModal = () => {
+    setIsAddCourseModalOpen(false);
+    setNewCourse({ name: '', code: '' });
+  };
+
+  const addCourse = () => {
+    if (newCourse.name && newCourse.code) {
+      const newColorIndex = colorIndex % backgroundColors.length; // Cycle through colors
+      const backgroundColor = backgroundColors[newColorIndex]; // Get the background color
+
+      setCourses([...courses, { ...newCourse, id: Date.now(), backgroundColor }]);
+      setColorIndex(colorIndex + 1); // Increment the color index
+      closeAddCourseModal();
+    }
+  };
+
+  const deleteCourse = (id) => {
+    setCourses(courses.filter(course => course.id !== id));
+  };
+
   return (
     <div className="dashboard">
       <header className="header">
         <div className="profile">
-          <img src="path_to_profile_image" alt="Profile" className="profile-img" />
           <h1>Hello, Jane</h1>
         </div>
       </header>
@@ -47,18 +77,40 @@ const Dashboard = () => {
       <section className="course-page">
         <h2>Courses</h2>
         <div className="courses">
-          <div className="course-item" style={{ backgroundColor: '#ccff00' }}>
-            <h3>Course1</h3>
-            <p>Course Code</p>
-            <p>⭐ 4.7 | 147 Hours | 10k People</p>
-          </div>
-          <div className="course-item" style={{ backgroundColor: '#ffcc99' }}>
-            <h3>SMM & Marketing</h3>
-            <p>400$</p>
-            <p>⭐ 4.3 | 125 Hours | 7k People</p>
-          </div>
+          {courses.map(course => (
+            <div key={course.id} className="course-item" style={{ backgroundColor: course.backgroundColor }} >
+              <h3>{course.name}</h3>
+              <p>{course.code}</p>
+              <button onClick={() => deleteCourse(course.id)}>Delete</button>
+            </div>
+          ))}
+          <button onClick={openAddCourseModal} className="add-course-button">+</button>
         </div>
       </section>
+
+      {isAddCourseModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Add New Course</h2>
+            <input
+              type="text"
+              placeholder="Course Name"
+              value={newCourse.name}
+              onChange={(e) => setNewCourse({ ...newCourse, name: e.target.value })}
+              className="modal-input"
+            />
+            <input
+              type="text"
+              placeholder="Course Code"
+              value={newCourse.code}
+              onChange={(e) => setNewCourse({ ...newCourse, code: e.target.value })}
+              className="modal-input"
+            />
+            <button onClick={addCourse} className="modal-button">Add Course</button>
+            <button onClick={closeAddCourseModal} className="modal-button">Cancel</button>
+          </div>
+        </div>
+      )}
 
       <section className="deadlines-section">
         <h2>Upcoming Deadlines</h2>
@@ -70,61 +122,40 @@ const Dashboard = () => {
       <section className="todo-section">
         <h2>To do</h2>
         <div className="todo">
-          <div className="todo-card" style={{ backgroundColor: '#ffcc99', padding: '20px' }}>
-            <Box>
-              <HStack mb={4}>
-                <Input 
-                  value={newTodo} 
-                  onChange={(e) => setNewTodo(e.target.value)}
-                  placeholder="Add a new task"
-                  onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+          <div className="todo-card">
+            <div>
+              <input
+                type="text"
+                value={newTodo}
+                onChange={(e) => setNewTodo(e.target.value)}
+                placeholder="Add a new task"
+                className="add-todo-input"
+                onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+              />
+              <button onClick={addTodo} className="add-todo-button">Add</button>
+            </div>
+            {todos.map(todo => (
+              <div key={todo.id} className="todo-item">
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => toggleTodo(todo.id)}
+                  className="todo-checkbox"
                 />
-                <Button onClick={addTodo} colorScheme="teal">Add</Button>
-              </HStack>
-              <VStack align="stretch" spacing={4}>
-                {todos.map(todo => (
-                  <HStack key={todo.id} p={2} bg="white" borderRadius="md" alignItems="center">
-                    {/* Checkbox on the left */}
-                    <Checkbox 
-                      isChecked={todo.completed} 
-                      onChange={() => toggleTodo(todo.id)}
-                      size="lg"
-                    />
-                    {/* Task text */}
-                    <Text
-                      flex={1}
-                      textDecoration={todo.completed ? 'line-through' : 'none'}
-                      color={todo.completed ? 'gray.500' : 'black'}
-                    >
-                      {todo.text}
-                    </Text>
-                    {/* Delete button */}
-                    <IconButton
-                      icon={<DeleteIcon />}
-                      onClick={() => deleteTodo(todo.id)}
-                      aria-label="Delete todo"
-                      size="sm"
-                    />
-                  </HStack>
-                ))}
-              </VStack>
-              {/* Completed tasks count */}
-              <Text mt={4} color="gray.600">
-                {todos.filter(todo => todo.completed).length} of {todos.length} tasks completed
-              </Text>
-            </Box>
+                <span className={`todo-text ${todo.completed ? 'completed-todo-text' : ''}`}>
+                  {todo.text}
+                </span>
+                <button onClick={() => deleteTodo(todo.id)} className="delete-todo-button">
+                  Delete
+                </button>
+              </div>
+            ))}
+            <div className="todo-counter">
+              {todos.filter(todo => todo.completed).length}/{todos.length} tasks completed
+            </div>
           </div>
         </div>
       </section>
-
-      <footer className="footer">
-        <div className="footer-menu">
-          <button>Home</button>
-          <button>Calendar</button>
-          <button>Courses</button>
-          <button>Account</button>
-        </div>
-      </footer>
     </div>
   );
 };

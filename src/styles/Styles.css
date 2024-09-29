@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #000;
+    background-color: #F9DBBD;
     color: #fff;
     text-align: center;
   }
@@ -31,38 +31,19 @@ body {
   }
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #000;
+    background-color: #ffffff;
     color: #fff;
     text-align: center;
   }
+
   
-  .input-field {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-    border-radius: 5px;
-    border: none;
-  }
-  
-  .login-button, .create-account-button {
-    background-color: #ccff00;
-    padding: 15px;
-    width: 85%;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #000;
-  }
   
   .login-page, .create-account-page {
     margin-top: 50px;
   }
   
   .signup-link {
-    color: #ccff00;
+    color: #a3c02d;
     margin-top: 20px;
     cursor: pointer;
     text-decoration: underline;
@@ -229,28 +210,30 @@ body {
     text-align: center;
 }
 
-/* Input Field Styles */
-.input-field {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-    border-radius: 5px;
-    border: none;
+/* Container for centering */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This ensures the container takes up the full viewport height */
 }
 
 /* Button Styles */
 .login-button, .create-account-button {
-    background-color: #ccff00;
-    padding: 15px;
-    width: 85%;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #000;
+  background-color: #ccff00;
+  padding: 15px;
+  width: 85%;
+  max-width: 300px; /* This prevents the button from becoming too wide on larger screens */
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000;
 }
+
+/* Additional styles for input fields if needed */
 
 /* Page Styles */
 .login-page, .create-account-page, .dashboard-page {
@@ -279,8 +262,8 @@ body {
 
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #000;
-    color: #fff;
+    background-color: #e6e8ea;
+    color: #100f4d;
     text-align: center;
   }
   
