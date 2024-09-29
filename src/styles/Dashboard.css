@@ -175,4 +175,42 @@
   .todo-add{
     padding: 8px;
   }
+  .course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .course-header h2 {
+    margin: 0;
+  }
+  
+  .add-course-button {
+    padding: 8px 16px;
+    font-size: 20px;
+    background-color: #07968c;
+    color: white;
+    border: none;
+    border-radius: 30%;
+    cursor: pointer;
+  }
+  
+  .add-course-button:hover {
+    background-color: #45a049;
+  }
+  .delete-course-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    padding: 8px;
+    transition: color 0.3s;
+  }
+  
+  .delete-course-button:hover {
+    color: #ff6b6b;  /* Change color on hover */
+  }
+  
+  
   

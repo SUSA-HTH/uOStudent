@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Input, Button, Text, VStack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faCalendar, faBook, faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const GradeCalculator = () => {
   const [currentGrades, setCurrentGrades] = useState([{ score: '', weight: '' }]);
@@ -121,12 +123,22 @@ const GradeCalculator = () => {
       </VStack>
 
       <div className="bottom-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠</button>
-        <button onClick={() => navigate('/calendar')}>📅</button>
-        <button onClick={() => navigate('/grade-calculator')}>📖</button>
-        <button>📝</button>
-        <button onClick={() => navigate('/profile')}>👤</button>
-      </div>
+  <button className="nav-button" onClick={() => navigate('/dashboard')}>
+    <FontAwesomeIcon icon={faHome} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/calendar')}>
+    <FontAwesomeIcon icon={faCalendar} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/course-list')}>
+    <FontAwesomeIcon icon={faBook} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/grade-calculator')}>
+    <FontAwesomeIcon icon={faEdit} />
+  </button>
+  <button className="nav-button" onClick={() => navigate('/profile')}>
+    <FontAwesomeIcon icon={faUser} />
+  </button>
+</div>
     </Box>
   );
 };

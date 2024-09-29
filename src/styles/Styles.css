@@ -33,10 +33,441 @@ body {
 .home-page {
   margin-top: 50px;
 }
+<<<<<<< HEAD
 body {
   font-family: 'Arial', sans-serif;
   background-color: #ffffff;
   color: #fff;
+=======
+
+/* Sign-Up Link Styles */
+.signup-link {
+    color: #ccff00;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Dashboard Styles */
+.dashboard-page {
+    margin-top: 50px;
+}
+
+.dashboard-content {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e6e8ea;
+    color: #100f4d;
+    text-align: center;
+  }
+  
+  .calendar-page {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .week {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .week button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+  }
+  
+  .days {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+  }
+  
+  .days span {
+    text-align: center;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-item {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-details h3 {
+    margin: 0;
+  }
+  
+  .task-courseCode {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #000;
+  }
+  
+  .bottom-nav button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .calendar-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .selected-day {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-item {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-details h3 {
+    margin: 0;
+  }
+  
+  .task-courseCode {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #000;
+  }
+  
+  .bottom-nav button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .profile-page {
+    text-align: center;
+    color: white;
+    padding: 20px;
+  }
+  
+  .profile-header {
+    margin-bottom: 20px;
+  }
+  
+  .settings-icon {
+    text-align: right;
+    font-size: 20px;
+  }
+  
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid #ccff00;
+    font-size: 50px;
+  }
+  
+  .profile-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .profile-tabs button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .profile-tabs button.active {
+    background-color: #ccff00;
+    color: black;
+    border-radius: 15px;
+  }
+  
+  .profile-content {
+    margin-top: 30px;
+  }
+  
+  .chart {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .chart-bar {
+    width: 10%;
+    background-color: #333;
+    position: relative;
+  }
+  
+  .filled {
+    background-color: #ccff00;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 10px;
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #07968c;
+    border-radius: 30px;
+  }
+  
+  .bottom-nav button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .calendar {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .course-data {
+    margin-top: 20px;
+  }
+  
+  .course-info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .section-info {
+    margin-left: 15px;
+  }
+  
+  .component-info {
+    margin-left: 30px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .component-info p {
+    margin: 2px 0;
+  }
+  body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .schedule-builder-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"], select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .add-course-btn {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .course-section {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .course-term {
+    margin-bottom: 20px;
+  }
+  
+  .course-card {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+  }
+  
+  .course-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .delete-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .course-details {
+    background-color: #404040;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  
+  .mandatory-optional {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .mandatory-btn, .optional-btn {
+    background-color: #666;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .mandatory-btn {
+    background-color: #007bff;
+  }
+  
+  .optional-btn {
+    background-color: #666;
+  }
+  
+  .course-sections {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .go-to-schedules-btn {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+=======
+  /* Profile Page Styling */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+>>>>>>> e2485da0445d2bd8218323bb43fbd3563da78181
   text-align: center;
 }
 
@@ -652,11 +1083,19 @@ color: #6b7280;
 
 
 .bottom-nav button {
+<<<<<<< HEAD
 background-color: #07968c;
 border: none;
 font-size: 24px;
 cursor: pointer;
 color: #fff;
+=======
+  background-color: #07968c;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+>>>>>>> e2485da0445d2bd8218323bb43fbd3563da78181
 }
 
 .bottom-nav button:hover {
