@@ -495,6 +495,167 @@ body {
     cursor: pointer;
   }
   
+  .calendar {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .course-data {
+    margin-top: 20px;
+  }
+  
+  .course-info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .section-info {
+    margin-left: 15px;
+  }
+  
+  .component-info {
+    margin-left: 30px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .component-info p {
+    margin: 2px 0;
+  }
+  body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .schedule-builder-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"], select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .add-course-btn {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .course-section {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .course-term {
+    margin-bottom: 20px;
+  }
+  
+  .course-card {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+  }
+  
+  .course-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .delete-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .course-details {
+    background-color: #404040;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  
+  .mandatory-optional {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .mandatory-btn, .optional-btn {
+    background-color: #666;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .mandatory-btn {
+    background-color: #007bff;
+  }
+  
+  .optional-btn {
+    background-color: #666;
+  }
+  
+  .course-sections {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .go-to-schedules-btn {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+=======
   /* Profile Page Styling */
 .profile-page {
   display: flex;
@@ -703,4 +864,5 @@ body {
   font-size: 18px; /* Font size for result */
   margin-top: 20px; /* Space above the result */
 }
+
 
