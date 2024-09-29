@@ -1,71 +1,99 @@
 import React, { useState } from 'react';
-import { Box, HStack, Input, Button, Text, VStack } from '@chakra-ui/react';
+import { Box, Input, Button, Text, VStack } from '@chakra-ui/react';
 
 const GradeCalculator = () => {
-  const [grades, setGrades] = useState([{ grade: '', weight: '' }]);
-  const [finalGrade, setFinalGrade] = useState(null);
+  const [currentGrades, setCurrentGrades] = useState([{ score: '', weight: '' }]);
+  const [finalWeight, setFinalWeight] = useState('');
+  const [desiredGrade, setDesiredGrade] = useState('');
+  const [requiredFinalGrade, setRequiredFinalGrade] = useState(null);
 
-  const handleChange = (index, field, value) => {
-    const newGrades = [...grades];
+  const handleGradeChange = (index, field, value) => {
+    const newGrades = [...currentGrades];
     newGrades[index][field] = value;
-    setGrades(newGrades);
+    setCurrentGrades(newGrades);
   };
 
   const addGrade = () => {
-    setGrades([...grades, { grade: '', weight: '' }]);
+    setCurrentGrades([...currentGrades, { score: '', weight: '' }]);
   };
 
-  const calculateFinalGrade = () => {
+  const calculateRequiredFinalGrade = () => {
+    let currentWeightedGrade = 0;
     let totalWeight = 0;
-    let weightedSum = 0;
 
-    grades.forEach(({ grade, weight }) => {
-      const numericGrade = parseFloat(grade);
-      const numericWeight = parseFloat(weight);
-
-      if (!isNaN(numericGrade) && !isNaN(numericWeight)) {
-        weightedSum += numericGrade * numericWeight;
-        totalWeight += numericWeight;
+    currentGrades.forEach(grade => {
+      const score = parseFloat(grade.score);
+      const weight = parseFloat(grade.weight);
+      if (!isNaN(score) && !isNaN(weight)) {
+        currentWeightedGrade += (score * weight) / 100;
+        totalWeight += weight;
       }
     });
 
-    if (totalWeight > 0) {
-      setFinalGrade((weightedSum / totalWeight).toFixed(2));
-    } else {
-      setFinalGrade(null);
+    const remainingWeight = 100 - totalWeight;
+
+    if (remainingWeight !== parseFloat(finalWeight)) {
+      alert('The final weight does not match the remaining percentage.');
+      return;
     }
+
+    const desiredGradePercentage = parseFloat(desiredGrade);
+
+    if (isNaN(desiredGradePercentage) || desiredGradePercentage < 0 || desiredGradePercentage > 100) {
+      alert('Please enter a valid desired grade between 0 and 100.');
+      return;
+    }
+
+    const requiredGrade = (desiredGradePercentage - currentWeightedGrade) / (remainingWeight / 100);
+
+    setRequiredFinalGrade(requiredGrade);
   };
 
   return (
-    <Box padding="4" bg="#000" color="#fff">
-      <VStack spacing={4}>
-        <h2>Grade Calculator</h2>
-        {grades.map((item, index) => (
-          <HStack key={index} spacing={4}>
-            <Input
-              type="number"
-              placeholder="Grade"
-              value={item.grade}
-              onChange={(e) => handleChange(index, 'grade', e.target.value)}
-            />
-            <Input
-              type="number"
-              placeholder="Weight"
-              value={item.weight}
-              onChange={(e) => handleChange(index, 'weight', e.target.value)}
-            />
-          </HStack>
-        ))}
-        <Button onClick={addGrade} colorScheme="teal">
-          Add Grade
-        </Button>
-        <Button onClick={calculateFinalGrade} colorScheme="green">
-          Calculate Final Grade
-        </Button>
+    <Box p={4} borderWidth={1} borderRadius="lg" boxShadow="md">
+      <VStack spacing={4} align="stretch">
+        <Text fontSize="2xl" fontWeight="bold">Grade Calculator</Text>
 
-        {finalGrade !== null && (
-          <Text fontSize="xl" mt={4}>
-            Final Grade: {finalGrade}
+        {currentGrades.map((grade, index) => (
+          <Box key={index} p={2} borderWidth={1} borderRadius="lg" backgroundColor="#1a1a1a">
+            <Text>Grade {index + 1}</Text>
+            <Input
+              placeholder="Score (%)"
+              value={grade.score}
+              onChange={(e) => handleGradeChange(index, 'score', e.target.value)}
+              type="number"
+              mb={2}
+            />
+            <Input
+              placeholder="Weight (%)"
+              value={grade.weight}
+              onChange={(e) => handleGradeChange(index, 'weight', e.target.value)}
+              type="number"
+            />
+          </Box>
+        ))}
+
+        <Button onClick={addGrade} colorScheme="teal">Add Another Grade</Button>
+
+        <Input
+          placeholder="Final Exam Weight (%)"
+          value={finalWeight}
+          onChange={(e) => setFinalWeight(e.target.value)}
+          type="number"
+        />
+
+        <Input
+          placeholder="Desired Final Grade (0-100)"
+          value={desiredGrade}
+          onChange={(e) => setDesiredGrade(e.target.value)}
+          type="number"
+        />
+
+        <Button onClick={calculateRequiredFinalGrade} colorScheme="blue">Calculate Required Final Grade</Button>
+
+        {requiredFinalGrade !== null && (
+          <Text fontSize="lg" mt={4}>
+            You need to score <strong>{requiredFinalGrade.toFixed(2)}%</strong> on the final exam to achieve a grade of <strong>{desiredGrade}</strong> %.
           </Text>
         )}
       </VStack>

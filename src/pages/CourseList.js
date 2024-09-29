@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const CourseList = () => {
-  // Mock user courses data (in practice, you might fetch this data from an API or local storage)
   const [courses, setCourses] = useState([]);
 
-  // Simulating fetching data from localStorage or an API
   useEffect(() => {
     const storedCourses = [
       { id: 1, title: 'React for Beginners', courseCode: 'REACT101', rating: 4.8, hours: 120, people: '5k' },
@@ -12,7 +10,6 @@ const CourseList = () => {
       { id: 3, title: 'Web Design Basics', courseCode: 'WD101', rating: 4.7, hours: 100, people: '8k' }
     ];
 
-    // You can replace this with an actual API call or localStorage fetch
     setCourses(storedCourses);
   }, []);
 
