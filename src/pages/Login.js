@@ -23,7 +23,7 @@ const Login = () => {
       localStorage.setItem('loggedInUser', JSON.stringify(user));
       
       // Redirect to the calendar page (or another page) after successful login
-      navigate('/calendar');
+      navigate('/dashboard');
     } catch (error) {
       alert('Error logging in: ' + error.message);
     }
